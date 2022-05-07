@@ -15,14 +15,14 @@ public class MenuBank {
 
     public void Menu(){
         boolean flag = true;
-        Scanner op = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
         while(flag) {
             System.out.println("" +
                     "\n\n[X] MY BANK MANU [X]\n" +
                     "1 - CRIAR UMA CONTA\n" +
-                    "2 - CUNSULTAR CONTA\n" +
+                    "2 - CONSULTAR CONTA\n" +
                     "0 - PARA SAIR");
-            switch (op.nextInt()) {
+            switch (in.nextInt()) {
                 case 1:
                     CriarConta();
                     break;
@@ -63,13 +63,56 @@ public class MenuBank {
     public void Consultar(){
         Scanner in = new Scanner(System.in);
         boolean flag = false;
+        boolean flag2 = true;
+        int aux2, aux3;
         System.out.println("CONSULTAR CONTA=>\n" +
                 "NUMERO DA CONTA: ");
         //in.nextLine();
         int aux = in.nextInt();
         for (Conta tempConta : Contas) {
             if(aux == tempConta.getNumConta()){
-                System.out.println("ENCONTRADO!");
+                while (flag2) {
+                    System.out.println("O QUE DESEJA FAZER:\n" +
+                            "1 - SAQUE\n" +
+                            "2 - DEPOSITO\n" +
+                            "3 - SALDO\n" +
+                            "4 - TRANSFERIR\n" +
+                            "0 - SAIR");
+                    switch (in.nextInt()) {
+                        case 0:
+                            flag2 = false;
+                            break;
+                        case 1:
+                            System.out.println("SAQUE:\n" +
+                                    "VALOR: ");
+                            tempConta.setSaldo(tempConta.getSaldo()-in.nextInt());
+                            break;
+                        case 2:
+                            System.out.println("DEPOSITO\n" +
+                                    "VALOR: ");
+                            tempConta.setSaldo(tempConta.getSaldo()+in.nextInt());
+                            break;
+                        case 3:
+                            System.out.println("SALDO:\n" +
+                                    "VALOR: " + tempConta.getSaldo() + "\n");
+                            break;
+                        case 4:
+                            System.out.println("TRANSFERÊNCIA:\n" +
+                                    "CONTA: ");
+                            aux2 = in.nextInt();
+                            for (Conta tempConta2 : Contas) {
+                                if(aux2 == tempConta2.getNumConta()){
+                                    System.out.println("VALOR: ");
+                                    aux3 = in.nextInt();
+                                    tempConta.setSaldo(tempConta.getSaldo()-aux3);
+                                    tempConta2.setSaldo(tempConta2.getSaldo()+aux3);
+                                    System.out.println("TRANSFERIDO");
+                                }
+                            }
+                            System.out.println("\n");
+                            break;
+                    }
+                }
                 flag = true;
             }
         }

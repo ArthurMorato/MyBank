@@ -22,13 +22,6 @@ public class Conta extends Usuario{
 
 
 
-    public Usuario getDono() {
-        return dono;
-    }
-
-    public void setDono(Usuario dono) {
-        this.dono = dono;
-    }
 
     public int getSaldo() {
         return saldo;
@@ -36,14 +29,6 @@ public class Conta extends Usuario{
 
     public void setSaldo(int saldo) {
         this.saldo = saldo;
-    }
-
-    public List<String> getTipos() {
-        return tipos;
-    }
-
-    public void setTipos(List<String> tipos) {
-        this.tipos = tipos;
     }
 
     public String getTipo() {

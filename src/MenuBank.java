@@ -27,7 +27,7 @@ public class MenuBank {
                     CriarConta();
                     break;
                 case 2:
-                    System.out.println("option 2\n");
+                    Consultar();
                     break;
                 case 0:
                     flag = false;
@@ -40,7 +40,7 @@ public class MenuBank {
         Scanner in = new Scanner(System.in);
         int aux1, aux2, aux4;
         String aux3;
-        System.out.println("CRIANDO UMA CONTA:\n" +
+        System.out.println("CRIANDO UMA CONTA=>\n" +
                 "NOME: ");
         // SEM NEXTLINE A ÚLTIMA LEITURA FEITA SERÁ O \n
         in.nextLine();
@@ -58,5 +58,23 @@ public class MenuBank {
 
     public Conta NewConta(String nome, int numConta, int saldo, int tipo){
         return new Conta(nome, numConta, saldo, tipo);
+    }
+
+    public void Consultar(){
+        Scanner in = new Scanner(System.in);
+        boolean flag = false;
+        System.out.println("CONSULTAR CONTA=>\n" +
+                "NUMERO DA CONTA: ");
+        //in.nextLine();
+        int aux = in.nextInt();
+        for (Conta tempConta : Contas) {
+            if(aux == tempConta.getNumConta()){
+                System.out.println("ENCONTRADO!");
+                flag = true;
+            }
+        }
+        if (flag == false) {
+            System.out.println("NÃO ENCONTRADO!");
+        }
     }
 }
